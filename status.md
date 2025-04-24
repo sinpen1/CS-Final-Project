@@ -2,15 +2,15 @@
 
 #### Your name
 
-TODO
+Sinai Penigar
 
 #### Your section leader's name
 
-TODO
+Parsa Esmaeilkhani
 
 #### Project title
 
-TODO
+Flappy Bird: Remix
 
 ***
 
