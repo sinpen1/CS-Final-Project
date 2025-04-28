@@ -6,16 +6,16 @@ import random
 pygame.init()
 
 # Start screen
-WIDTH, HEIGHT = 400, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+Width, Height = 400, 600
+screen = pygame.display.set_mode((Width, Height))
 pygame.display.set_caption("Flappy Bird Remix")
 clock = pygame.time.Clock()
 
 # Colors
 SKY_BLUE = (135, 206, 235)
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GREEN = (0, 200, 0)
+White = (255, 255, 255)
+Black = (0, 0, 0)
+Green = (0, 200, 0)
 
 # Loading assets
 bird_image = pygame.image.load("bird.png")
@@ -26,7 +26,7 @@ flap_sound = pygame.mixer.Sound("flap.mp3")
 crash_sound = pygame.mixer.Sound("hit.mp3")
 
 # Bird setup
-bird = pygame.Rect(100, HEIGHT // 2, 50, 50)
+bird = pygame.Rect(100, Height // 2, 50, 50)
 bird_velocity = 0
 gravity = 0.5
 flap_power = -8
@@ -39,8 +39,8 @@ pipes = []
 
 def create_pipe():
     height = random.randint(100, 400)
-    top_pipe = pygame.Rect(WIDTH, 0, pipe_width, height)
-    bottom_pipe = pygame.Rect(WIDTH, height + pipe_gap, pipe_width, HEIGHT - (height + pipe_gap))
+    top_pipe = pygame.Rect(Width, 0, pipe_width, height)
+    bottom_pipe = pygame.Rect(Width, height + pipe_gap, pipe_width, Height - (height + pipe_gap))
     return top_pipe, bottom_pipe
 
 # Initial pipe
@@ -69,7 +69,7 @@ while True:
                     game_active = True
                 elif game_over:
                     # Reset everything for restarting the game
-                    bird.y = HEIGHT // 2
+                    bird.y = Height // 2
                     bird_velocity = 0
                     pipes = list(create_pipe())
                     score = 0
@@ -107,7 +107,7 @@ while True:
                 game_active = False
                 game_over = True
 
-        if bird.top <= 0 or bird.bottom >= HEIGHT:
+        if bird.top <= 0 or bird.bottom >= Height:
             crash_sound.play()
             game_active = False
             game_over = True
@@ -120,41 +120,42 @@ while True:
 
     # Draw pipes
     for pipe in pipes:
-        pygame.draw.rect(screen, GREEN, pipe)
+        pygame.draw.rect(screen, Green, pipe)
 
     # Draw score
-    score_text = font.render(f"Score: {score}", True, BLACK)
+    score_text = font.render(f"Score: {score}", True, Black)
     screen.blit(score_text, (10, 10))
 
     # Screens
     if not game_active and not game_over:
         # Start screen
         box_width, box_height = 350, 200
-        box_x, box_y = WIDTH // 2 - box_width // 2, HEIGHT // 2 - box_height // 2
-        pygame.draw.rect(screen, WHITE, (box_x, box_y, box_width, box_height))
-        pygame.draw.rect(screen, BLACK, (box_x, box_y, box_width, box_height), 3)
+        box_x, box_y = Width // 2 - box_width // 2, Height // 2 - box_height // 2
+        pygame.draw.rect(screen, White, (box_x, box_y, box_width, box_height))
+        pygame.draw.rect(screen, Black, (box_x, box_y, box_width, box_height), 3)
 
-        title_text = font.render("Flappy Bird Remix", True, BLACK)
-        creator_text = small_font.render("By Sinai P & Moe H", True, BLACK)
-        up_text = small_font.render("Press UP to Play", True, BLACK)
-        p_text = small_font.render("Press P to Pause/Unpause", True, BLACK)
+        title_text = font.render("Flappy Bird Remix", True, Black)
+        creator_text = small_font.render("By Sinai P & Moe H", True, Black)
+        up_text = small_font.render("Press UP to Play", True, Black)
+        p_text = small_font.render("Press P to Pause/Unpause", True, Black)
 
-        screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, box_y + 10))
-        screen.blit(creator_text, (WIDTH // 2 - creator_text.get_width() // 2, box_y + 60))
-        screen.blit(up_text, (WIDTH // 2 - up_text.get_width() // 2, box_y + 100))
-        screen.blit(p_text, (WIDTH // 2 - p_text.get_width() // 2, box_y + 130))
+        screen.blit(title_text, (Width // 2 - title_text.get_width() // 2, box_y + 10))
+        screen.blit(creator_text, (Width // 2 - creator_text.get_width() // 2, box_y + 60))
+        screen.blit(up_text, (Width // 2 - up_text.get_width() // 2, box_y + 100))
+        screen.blit(p_text, (Width // 2 - p_text.get_width() // 2, box_y + 130))
 
     elif paused:
-        pause_text = font.render("Paused - Press P", True, BLACK)
-        screen.blit(pause_text, (WIDTH // 2 - pause_text.get_width() // 2, HEIGHT // 2))
+        pause_text = font.render("Paused - Press P", True, Black)
+        screen.blit(pause_text, (Width // 2 - pause_text.get_width() // 2, Height // 2))
 
     elif game_over:
         # Game Over screen
-        over_text = font.render("Game Over!", True, BLACK)
-        restart_text = small_font.render("Press UP to Restart", True, BLACK)
+        over_text = font.render("Game Over!", True, Black)
+        restart_text = small_font.render("Press UP to Restart", True, Black)
 
-        screen.blit(over_text, (WIDTH // 2 - over_text.get_width() // 2, HEIGHT // 2 - 50))
-        screen.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT // 2 + 10))
+        screen.blit(over_text, (Width // 2 - over_text.get_width() // 2, Height // 2 - 50))
+        screen.blit(restart_text, (Width // 2 - restart_text.get_width() // 2, Height // 2 + 10))
 
     pygame.display.update()
     clock.tick(60)
+
